@@ -5,4 +5,4 @@ This is an edit from VS code!
 
 And this is an edit from GitHub! Wowie zowie!
 
-VS code edit to cause conflict...
+There we go... all better!
