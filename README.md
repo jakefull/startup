@@ -24,3 +24,8 @@ Key Features
 - Can save multiple databases of passages to memorize
 - Login authenticator to allow for private databases
 - And, of course, available on mobile app stores
+
+## Notes on Web Server
+
+IP Address: http://18.189.66.142/
+SSH login cmd: ssh -i [key pair file] ubuntu@[ip address]
