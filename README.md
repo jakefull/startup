@@ -28,4 +28,6 @@ Key Features
 ## Notes on Web Server
 
 IP Address: http://18.189.66.142/
+
+Domain: http://www.typemory.link/
 SSH login cmd: ssh -i [key pair file] ubuntu@[ip address]
