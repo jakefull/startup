@@ -31,3 +31,7 @@ IP Address: http://18.189.66.142/
 
 Domain: http://www.typemory.link/
 SSH login cmd: ssh -i [key pair file] ubuntu@[ip address]
+
+Use sudo vi Caddyfile -> i to edit
+Esc to stop editing -> :wq to save your edits
+sudo service caddy restart to begin https service
