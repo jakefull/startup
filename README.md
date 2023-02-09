@@ -35,3 +35,10 @@ SSH login cmd: ssh -i [key pair file] ubuntu@[ip address]
 Use sudo vi Caddyfile -> i to edit
 Esc to stop editing -> :wq to save your edits
 sudo service caddy restart to begin https service
+
+## Simon HTML Assignment
+
+I learned how powerful html is albeit very basic looking. You can display all the information you need to in an organized manner, collect data from the user, and display images/shapes. I also learned that even if you set the language to english, you can still display Japanese text just fine.
+
+The following line of code took me a while to understand, but then I realized it was setting the icon that shows in the tab on your browser! Pretty neat stuff, aye?
+    <link rel="icon" href="favicon.ico" />
