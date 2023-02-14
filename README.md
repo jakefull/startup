@@ -42,3 +42,7 @@ I learned how powerful html is albeit very basic looking. You can display all th
 
 The following line of code took me a while to understand, but then I realized it was setting the icon that shows in the tab on your browser! Pretty neat stuff, aye?
     <link rel="icon" href="favicon.ico" />
+
+## CSS
+
+Be sure to position things absolutely or fix them (depending on what you want them to do when the user scrolls) to posiiton things around the display. Additionally, when having animations that involve going off screen and coming on screen, don't forget to edit the width.
