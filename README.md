@@ -46,3 +46,5 @@ The following line of code took me a while to understand, but then I realized it
 ## CSS
 
 Be sure to position things absolutely or fix them (depending on what you want them to do when the user scrolls) to posiiton things around the display. Additionally, when having animations that involve going off screen and coming on screen, don't forget to edit the width.
+
+Also, use flex to position your page's elements! It is the move. flex: #ratio of the screen (ex. use 1 and 3 for secondary and main section) #fixed px value (for header/footer)
