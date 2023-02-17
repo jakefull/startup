@@ -48,3 +48,26 @@ The following line of code took me a while to understand, but then I realized it
 Be sure to position things absolutely or fix them (depending on what you want them to do when the user scrolls) to posiiton things around the display. Additionally, when having animations that involve going off screen and coming on screen, don't forget to edit the width.
 
 Also, use flex to position your page's elements! It is the move. flex: #ratio of the screen (ex. use 1 and 3 for secondary and main section) #fixed px value (for header/footer)
+
+## Bootstrap
+
+REMEMBER THE FOLLOWING:
+- always include <meta name="viewport" content="width=device-width, initial-scale=1" /> under head
+- always include <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous" /> under head
+- always include <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"
+  ></script> just before end of body
+
+Use the following when implementing your program:
+- <button... class ="btn btn-success" data-bs-toggle-"button" (for toggling 1st letter show/no show)
+- <header class ="sticky-top"
+- <footer class ="sticky-bottom"
+- include a cover page so it looks clearn
+Reference this website for more ideas on what to implement: https://getbootstrap.com/docs/5.2/examples/
+
