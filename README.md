@@ -71,3 +71,7 @@ Use the following when implementing your program:
 - include a cover page so it looks clearn
 Reference this website for more ideas on what to implement: https://getbootstrap.com/docs/5.2/examples/
 
+## Simon CSS Implementation
+
+I learned the importance of understanding what all of the bootstrap classes do whenever you implement them... because if you don't understand, you will get stuck trying to fix one little formatting thing for a good while! The containers really clicked for me though, and I was able to visualize more easily how all of the containers work togther. I also learned that you could override some undesirable features by using your own stylesheet. I had to do that for a bootstrap login menu that I implemented, as some of the text wasn't centering on it. Once I changed the display of the text's container to flex, however, I could then center its content.
+
