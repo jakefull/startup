@@ -25,6 +25,16 @@ Key Features
 - Login authenticator to allow for private databases
 - And, of course, available on mobile app stores
 
+## Some Lessons Learned
+
+Often times to obtain spacing on the nav bar, you can add a margin to the individual elements on the nav bar and that will give you some spacing.
+
+For bootstrap, use data-bs-toggle="button" when defining the button to make it a toggle button.
+
+Often times, simple but functional and straightforward is better than complicated but buggy and confusing.
+
+I need to study bootstrap spacing and how that meshes with flex... look into that more.
+
 ## Notes on Web Server
 
 IP Address: http://18.189.66.142/
