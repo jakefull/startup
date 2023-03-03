@@ -95,7 +95,7 @@ Here is some example code:
 
 const haveMoney = false;
 const amHungry = true;
-
+'''
 function liveLife () {
   return new Promise((resolve,reject) => {
     if (haveMoney && amHungry) {
@@ -113,3 +113,4 @@ liveLife().then((message) => {
 }).catch((error) => {
   console.log(error)
 })
+'''
