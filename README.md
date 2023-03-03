@@ -93,7 +93,8 @@ Remember to use the this. whenever accessing the variables/attributes of the obj
 
 Here is some example code:
 
-`const haveMoney = false;
+```ruby
+const haveMoney = false;
 const amHungry = true;
 
 function liveLife () {
@@ -113,4 +114,4 @@ liveLife().then((message) => {
 }).catch((error) => {
   console.log(error)
 })
-`
+```
