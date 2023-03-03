@@ -89,3 +89,27 @@ I learned the importance of understanding what all of the bootstrap classes do w
 
 Remember to use the this. whenever accessing the variables/attributes of the obj/class. Also, when defining a func as an attribute of a func or class, remember that you don't need to declare function before doing so.
 
+## JS Promises
+
+Here is some example code:
+
+const haveMoney = false;
+const amHungry = true;
+
+function liveLife () {
+  return new Promise((resolve,reject) => {
+    if (haveMoney && amHungry) {
+      resolve('arrrrrriba costa vida! yo quiero un taco!')
+    } else if (amHungry) {
+      resolve('knock it off Napoleon, make yoself a dang quesedilla!')
+    } else {
+      reject('just keep working on your homework')
+    }
+  })
+}
+
+liveLife().then((message) => {
+  console.log(message)
+}).catch((error) => {
+  console.log(error)
+})
