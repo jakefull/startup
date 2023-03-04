@@ -89,7 +89,7 @@ I learned the importance of understanding what all of the bootstrap classes do w
 
 Remember to use the this. whenever accessing the variables/attributes of the obj/class. Also, when defining a func as an attribute of a func or class, remember that you don't need to declare function before doing so.
 
-## JS Promises
+## JS Promises and Async/Await
 
 Here is some example code:
 
@@ -114,4 +114,36 @@ liveLife().then((message) => {
 }).catch((error) => {
   console.log(error)
 })
+```
+
+And for the same code but async/await:
+
+```ruby 
+const haveMoney = false;
+const amHungry = false;
+
+async function fxnToLiveLife () {
+    try {
+  const yourLife = await liveLife();
+  console.log(yourLife);
+} catch (error) {
+  console.log(error);
+} finally {
+  console.log("good work")
+}
+}
+
+function liveLife () {
+  return new Promise((resolve,reject) => {
+    if (haveMoney && amHungry) {
+      resolve('arrrrrriba costa vida! yo quiero un taco!')
+    } else if (amHungry) {
+      resolve('knock it off Napoleon, make yoself a dang quesedilla!')
+    } else {
+      reject('just keep working on your homework')
+    }
+  })
+}
+
+fxnToLiveLife();
 ```
