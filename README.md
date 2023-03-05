@@ -147,3 +147,10 @@ function liveLife () {
 
 fxnToLiveLife();
 ```
+
+## Simon JS
+
+- Be sure to include `<script src="js file name.js"></script>` in your head html section.
+- NOTE: Sometimes you need to include this at the end of the body in case your code references HTML elements during initialization!
+- Also add  `onclick = "fxn()"` to buttons and forms so that your js is called.
+- Additionally, you can define multiple classes for a button element and create a class specifically for the javascript to discover the button.
