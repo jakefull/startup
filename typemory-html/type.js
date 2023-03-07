@@ -50,6 +50,7 @@ class typeGame {//takes in a mempass
         this.current_word = 0;
         this.punc = true;
         this.pass_id = "Unselected"
+        this.beginGame();
     }
 
     async updatePassage(mempass) { //add code to ensure you recieve a mempass object
@@ -64,17 +65,30 @@ class typeGame {//takes in a mempass
     }
 
     async beginGame() {
-
+        //show title
+        //insert passage after clearning previous one
+        this.typearray = [];
+        this.current_word=0;
     }
 
     async typeWord(word) {
         if (word === this.puncarray(current_word)) {
             this.current_word++;
-
-
+            if (this.current_word >= this.word_count) {
+                //end game!
+                this.beginGame();
+            } else {
+                //update the typearray to fill in the previous word
+                this.typearray[this.current_word-1] = this.goalarray[this.current_word-1];
+            }
+        
         } else {
-            showWrong();
+            showWrong(); //give an error message, let them try again
         }
+    }
+
+    async forgotWord() {
+        this.typeWord(this.goalarray[this.current_word]);
     }
 
     async noPuncTypeWord(word) {
