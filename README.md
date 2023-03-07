@@ -85,3 +85,72 @@ Reference this website for more ideas on what to implement: https://getbootstrap
 
 I learned the importance of understanding what all of the bootstrap classes do whenever you implement them... because if you don't understand, you will get stuck trying to fix one little formatting thing for a good while! The containers really clicked for me though, and I was able to visualize more easily how all of the containers work togther. I also learned that you could override some undesirable features by using your own stylesheet. I had to do that for a bootstrap login menu that I implemented, as some of the text wasn't centering on it. Once I changed the display of the text's container to flex, however, I could then center its content.
 
+## JS Obj/Classes
+
+Remember to use the this. whenever accessing the variables/attributes of the obj/class. Also, when defining a func as an attribute of a func or class, remember that you don't need to declare function before doing so.
+
+## JS Promises and Async/Await
+
+Here is some example code:
+
+```ruby
+const haveMoney = false;
+const amHungry = true;
+
+function liveLife () {
+  return new Promise((resolve,reject) => {
+    if (haveMoney && amHungry) {
+      resolve('arrrrrriba costa vida! yo quiero un taco!')
+    } else if (amHungry) {
+      resolve('knock it off Napoleon, make yoself a dang quesedilla!')
+    } else {
+      reject('just keep working on your homework')
+    }
+  })
+}
+
+liveLife().then((message) => {
+  console.log(message)
+}).catch((error) => {
+  console.log(error)
+})
+```
+
+And for the same code but async/await:
+
+```ruby 
+const haveMoney = false;
+const amHungry = false;
+
+async function fxnToLiveLife () {
+    try {
+  const yourLife = await liveLife();
+  console.log(yourLife);
+} catch (error) {
+  console.log(error);
+} finally {
+  console.log("good work")
+}
+}
+
+function liveLife () {
+  return new Promise((resolve,reject) => {
+    if (haveMoney && amHungry) {
+      resolve('arrrrrriba costa vida! yo quiero un taco!')
+    } else if (amHungry) {
+      resolve('knock it off Napoleon, make yoself a dang quesedilla!')
+    } else {
+      reject('just keep working on your homework')
+    }
+  })
+}
+
+fxnToLiveLife();
+```
+
+## Simon JS
+
+- Be sure to include `<script src="js file name.js"></script>` in your head html section.
+- NOTE: Sometimes you need to include this at the end of the body in case your code references HTML elements during initialization!
+- Also add  `onclick = "fxn()"` to buttons and forms so that your js is called.
+- Additionally, you can define multiple classes for a button element and create a class specifically for the javascript to discover the button.
