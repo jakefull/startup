@@ -14,6 +14,12 @@
 //      is ever equal to the word count (ie you just typed the last word
 //          if this hap
 
+
+
+// const Passage1 = "Two roads diverged in a yellow wood, And sorry I could not travel both And be one traveler, long I stood And looked down one as far as I could To where it bent in the undergrowth";
+// mempass1 = new mempass("Yellow Roads",Passage1);
+
+
 class mempass {
     pass_id; //name for passage
     passage; //the passage itself
@@ -40,38 +46,75 @@ class mempass {
 class typeGame {//takes in a mempass
     goalarray; //given by the selected mempass
     typearray; //array that is used while player is typing
+    showstring; //string composed from typearray
     current_word; //current word the player is typing
-    punc; //whether or not player has toggled no punc
+    // punc; //whether or not player has toggled no punc
     pass_title;
+    show;
 
     constructor () {
-        this.goalarray = "Please select a passage using the passage screen or sidebar (if present)"
-        this.typearray = [];
+        this.goalarray = [];
+        this.typearray = []; //eventually replace hidden string with this
+        this.showstring = "Please select a passage using the passage screen or sidebar (if present)";
+        this.hiddenstring = "HIDDEN: Please select a passage using the passage screen or sidebar (if present)";
         this.current_word = 0;
-        this.punc = true;
-        this.pass_id = "Unselected"
+        this.show = false;
+        this.pass_title = "Unselected"
+
+        const playerNameEl = document.querySelector('.player-name');
+        playerNameEl.textContent = this.getPlayerName();
+
         this.beginGame();
     }
 
+    switchShow() {
+        if (this.show) {
+            this.show = false;
+
+        } else {
+            this.show = true;
+        }
+        this.updateDisplay();
+    }
+
+    getPlayerName() {
+        return localStorage.getItem('userName') ?? 'Mystery user';
+      }
+
     async updatePassage(mempass) { //add code to ensure you recieve a mempass object
         this.pass_title = mempass.pass_id;
-        if (punc) {
-            this.goalarray = mempass.puncarray;
-        } else {
-            this.goalarray = mempass.nopuncarray;
-        }
+        // if (punc) {
+        //     this.goalarray = mempass.puncarray;
+        // } else {
+        //     this.goalarray = mempass.nopuncarray;
+        // }
+        let temp = this.passage.replace(allregexbutspace,"_");//replace all the characters with an underscore!
+        this.typearray = temp.split(" ");
         this.current_word = 0;
-        
+        this.beginGame();
+    }
+
+    updateDisplay () {
+        document.getElementById("passtitle").textContent=this.pass_title;
+        if (this.show) {
+            document.getElementById("thepass").textContent=this.showstring;
+        } else {
+            document.getElementById("thepass").textContent=this.hiddenstring;
+        }
+        document.getElementById("counter").textContent=this.current_word+1;
     }
 
     async beginGame() {
-        //show title
+        this.updateDisplay;
         //insert passage after clearning previous one
         this.typearray = [];
         this.current_word=0;
     }
 
-    async typeWord(word) {
+    async typeWord() {
+        const wordEl = document.querySelector("#word");
+        localStorage.setItem("word", wordEl.value);
+        word = localStorage.getItem('word');
         if (word === this.puncarray(current_word)) {
             this.current_word++;
             if (this.current_word >= this.word_count) {
@@ -79,7 +122,9 @@ class typeGame {//takes in a mempass
                 this.beginGame();
             } else {
                 //update the typearray to fill in the previous word
-                this.typearray[this.current_word-1] = this.goalarray[this.current_word-1];
+                // this.typearray[this.current_word-1] = this.goalarray[this.current_word-1];
+                //show the new typearray so they can see their progress!
+                this.updateDisplay();
             }
         
         } else {
@@ -87,12 +132,17 @@ class typeGame {//takes in a mempass
         }
     }
 
-    async forgotWord() {
-        this.typeWord(this.goalarray[this.current_word]);
+    async noPuncTypeWord(word) {
+        //copy above code but use this.nopuncarray
     }
 
-    async noPuncTypeWord(word) {
+    async showWrong() {
+        //edit the input button to turn red?
+        console.log("WRONG");
+    }
 
+    async forgotWord() {
+        this.typeWord(this.goalarray[this.current_word]);
     }
 
 }
