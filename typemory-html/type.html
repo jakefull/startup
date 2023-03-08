@@ -41,7 +41,7 @@
                       </h6>
                 <ul class="nav flex-column">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">
+                    <a class="nav-link active" aria-current="page" href="#" onclick="game.updatePassage(Passage1)">
                       Passage #1
                     </a>
                   </li>
@@ -93,22 +93,27 @@
               <div id="typebox" class="col-md- ms-sm-auto col-lg-10 px-md-4">
                 <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Control Bar</h1>
+                  <div class="players">
+                    Player:
+                    <span class="player-name"></span>
+                  </div>
                     <div class="btn-toolbar mb-2 mb-md-0">
                       <div class="btn-group me-2">
-                        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="button">toggle no punctuation</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="button">toggle first letter</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">begin timer</button>
+                        <!-- <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="button">toggle no punctuation</button> -->
+                        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="button" onclick="game.switchShow()">toggle show passage</button>
+                        <!-- <button type="button" class="btn btn-sm btn-outline-secondary">begin timer</button> -->
                       </div>
                     </div>
                   </div>
                   <div id="passagebox">
-                    <p>Hello there this is the _______ you have selected, feel free to start typing away and memorizing this.</p>
+                    <h5 id="passtitle">Hello there</h5>
+                    <p id="thepass">Hello there this is the _______ you have selected, feel free to start typing away and memorizing this.</p>
                     <form method="get" class="answer">
                         <label for="word">Fill in the Blank</label>
-                        <input type="text" id="insert">
-                        <button type="submit" class="btn btn-primary">Check</button>
+                        <input type="text" id="word">
+                        <button type="submit" class="btn btn-primary" onclick="game.checkWord()">Check</button>
                     </form>
+                    <p id="counter"></p>
                   </div>
                   </div>
             </div>
@@ -124,5 +129,6 @@
           </div>
         </footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+        <script src="type.js"></script>
     </body>
 </html>
