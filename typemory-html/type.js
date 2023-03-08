@@ -16,10 +16,6 @@
 
 
 
-// const Passage1 = "Two roads diverged in a yellow wood, And sorry I could not travel both And be one traveler, long I stood And looked down one as far as I could To where it bent in the undergrowth";
-// mempass1 = new mempass("Yellow Roads",Passage1);
-
-
 class mempass {
     pass_id; //name for passage
     passage; //the passage itself
@@ -34,11 +30,10 @@ class mempass {
         this.pass_id = pass_id;
         this.passage = input;
         this.puncarray = input.split(" "); //is this an array? ALSO do I ever need to use new?
-        this.nopuncpassage = input.replace(regex,"");
-        this.nopuncarray = this.nopuncpassage.split(" ");
+        // this.nopuncpassage = input.replace(regex,"");
+        // this.nopuncarray = this.nopuncpassage.split(" ");
         //add a check for word count? and if it is above a certain amount, throw an error?
-        wc = this.puncarray.size(); //syntax correct?
-        current_word = 0;
+        this.wc = this.puncarray.length; //syntax correct?
     }
 
 }
@@ -51,6 +46,7 @@ class typeGame {//takes in a mempass
     // punc; //whether or not player has toggled no punc
     pass_title;
     show;
+    word_count;
 
     constructor () {
         this.goalarray = [];
@@ -60,6 +56,8 @@ class typeGame {//takes in a mempass
         this.current_word = 0;
         this.show = false;
         this.pass_title = "Unselected"
+
+        // this.pass1 = mempass1;
 
         const playerNameEl = document.querySelector('.player-name');
         playerNameEl.textContent = this.getPlayerName();
@@ -83,14 +81,24 @@ class typeGame {//takes in a mempass
 
     async updatePassage(mempass) { //add code to ensure you recieve a mempass object
         this.pass_title = mempass.pass_id;
+        this.showstring = mempass.passage;
+        this.hiddenstring = mempass.passage; //implement this later
         // if (punc) {
         //     this.goalarray = mempass.puncarray;
         // } else {
         //     this.goalarray = mempass.nopuncarray;
         // }
-        let temp = this.passage.replace(allregexbutspace,"_");//replace all the characters with an underscore!
-        this.typearray = temp.split(" ");
-        this.current_word = 0;
+        // let temp = this.passage.replace(allregexbutspace,"_");//replace all the characters with an underscore!
+        // this.typearray = temp.split(" ");
+        this.goalarray = mempass.puncarray;
+        this.typearray = mempass.puncarray; 
+        this.word_count = mempass.wc;
+        
+        this.beginGame();
+    }
+
+    updatePassage1() {
+        this.updatePassage(mempass1);
         this.beginGame();
     }
 
@@ -105,17 +113,18 @@ class typeGame {//takes in a mempass
     }
 
     async beginGame() {
-        this.updateDisplay;
+        this.updateDisplay();
         //insert passage after clearning previous one
-        this.typearray = [];
+        // this.typearray = [];
         this.current_word=0;
     }
 
-    async typeWord() {
+    async checkWord() {
         const wordEl = document.querySelector("#word");
         localStorage.setItem("word", wordEl.value);
-        word = localStorage.getItem('word');
-        if (word === this.puncarray(current_word)) {
+        let word = localStorage.getItem('word');
+        wordEl.value = "";
+        if (word === this.goalarray[this.current_word]) {
             this.current_word++;
             if (this.current_word >= this.word_count) {
                 //end game!
@@ -146,5 +155,9 @@ class typeGame {//takes in a mempass
     }
 
 }
+
+const Passage1 = "Two roads diverged in a yellow wood, And sorry I could not travel both And be one traveler, long I stood And looked down one as far as I could To where it bent in the undergrowth";
+mempass1 = new mempass("Yellow Roads",Passage1);
+//CAN'T FIGURE OUT HOW TO PASS THIS IN!
 
 const game = new typeGame;
