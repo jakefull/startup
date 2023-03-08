@@ -66,6 +66,44 @@ class typeGame {//takes in a mempass
         this.beginGame();
     }
 
+    saveScore(wc) {
+        const userName = this.getPlayerName();
+        let memorized = [];
+        const scoresText = localStorage.getItem('scores');
+        if (scoresText) {
+          memorized = JSON.parse(scoresText);
+        }
+        memorized = this.updateScores(userName, wc, memorized);
+    
+        localStorage.setItem('scores', JSON.stringify(memorized));
+      }
+
+    //   updateScore(wc) {
+    //     const wcEl = document.querySelector('#counter');
+    //     wcEl.textContent = wc;
+    //   }
+
+      updateScores(userName, pass_title, wc, memorized) {
+        const date = new Date().toLocaleDateString();
+        const newPass = { name: userName, pass_title: pass_title, wc: wc, date: date};
+    
+        let found = false;
+        for (const [i, prevPass] of memorized.entries()) {
+          if (wc > prevPass.wc) {
+            scores.splice(i, 0, memorized);
+            found = true;
+            break;
+          }
+        }
+        if (!found) {
+            scores.push(newScore);
+        }
+//PICK UP HERE ______________________________________--------------_________ Maybe incorporate just as he has it and THEN change some variables, etc.
+        if (scores.length > 10) {
+            scores.length = 10;
+        }
+      }
+
     switchShow() {
         if (this.show) {
             this.show = false;
@@ -98,11 +136,6 @@ class typeGame {//takes in a mempass
         this.beginGame();
     }
 
-    updatePassage1() {
-        this.updatePassage(mempass1);
-        this.beginGame();
-    }
-
     updateDisplay () {
         document.getElementById("passtitle").textContent=this.pass_title;
         if (this.show) {
@@ -115,6 +148,8 @@ class typeGame {//takes in a mempass
 
     async beginGame() {
         this.current_word=0;
+        this.hiddenstring = this.showstring.replace(allbutspace, "_");
+        this.typearray = this.hiddenstring.split(" ");
         this.updateDisplay();
         //insert passage after clearning previous one
         // this.typearray = [];
@@ -127,9 +162,10 @@ class typeGame {//takes in a mempass
         let word = localStorage.getItem('word');
         wordEl.value = "";
         if (word === this.goalarray[this.current_word]) {
+            this.typearray[this.current_word] = this.goalarray[this.current_word];
+            this.hiddenstring = this.typearray.join(" "); //this should join all the array into a string
             this.current_word++;
             if (this.current_word >= this.word_count) {
-                //end game!
                 this.beginGame();
             } else {
                 //update the typearray to fill in the previous word
@@ -169,14 +205,19 @@ class typeGame {//takes in a mempass
 //             this.el.style.backgroundColor = background;
 //     }
 
-    async forgotWord() {
-        this.typeWord(this.goalarray[this.current_word]);
-    }
+    // async forgotWord() { //implement later?
+    //     this.typeWord(this.goalarray[this.current_word]);
+    // }
 
 }
 
 const Passage1 = "Two roads diverged in a yellow wood, And sorry I could not travel both And be one traveler, long I stood And looked down one as far as I could To where it bent in the undergrowth";
 mempass1 = new mempass("Yellow Roads",Passage1);
-//CAN'T FIGURE OUT HOW TO PASS THIS IN!
+const Passage2 = "The standard of truth has been erected. No unhallowed hand can stop the work from progressing; persecutions may rage, mobs may combine, armies may assemble, calumny may defame, but the truth of God will go forth boldly, nobly, and independent till it has penetrated every continent, visited every clime, swept every country, and sounded in every ear, till the purposes of God shall be accomplished and the great Jehovah shall say the work is done."
+mempass2 = new mempass("Standard of Truth", Passage2);
+const Passage3 = "This course is designed so that you can complete everything entirely online. However, in-person classes are provided most Monday, Wednesday, and Fridays at 3 PM in JKB 3108.  Everyone is invited, and encouraged, to come regardless if you are in the online or in-person section. Creating an internet start up is a social activity and the more energy we bring to class the more we will all gain from the course."
+mempass3 = new mempass("CS 260 Description",Passage3);
+const Passage4 = "This is the shortest passage to memorize."
+mempass4 = new mempass("Short", Passage4)
 
 const game = new typeGame;
