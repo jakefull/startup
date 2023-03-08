@@ -14,7 +14,10 @@
 //      is ever equal to the word count (ie you just typed the last word
 //          if this hap
 
+//DECLARE REGEXs
 
+const allbutspace = /\S/g;
+const allpunc = /[.,\/#!$%\^&\*;:{}=\-_`~()]/g;
 
 class mempass {
     pass_id; //name for passage
@@ -23,15 +26,13 @@ class mempass {
     nopuncpassage;
     nopuncarray; //for reference
     wc; //word count
-    // punctuation = '!"';      define these in a seperate function?
-    // nopunc = RegExp('[' + punctuation + ']', 'g');
 
     constructor (pass_id, input) {
         this.pass_id = pass_id;
         this.passage = input;
-        this.puncarray = input.split(" "); //is this an array? ALSO do I ever need to use new?
-        // this.nopuncpassage = input.replace(regex,"");
-        // this.nopuncarray = this.nopuncpassage.split(" ");
+        this.puncarray = input.split(" ");
+        this.nopuncpassage = input.replace(allpunc,"");
+        this.nopuncarray = this.nopuncpassage.split(" ");
         //add a check for word count? and if it is above a certain amount, throw an error?
         this.wc = this.puncarray.length; //syntax correct?
     }
@@ -82,7 +83,7 @@ class typeGame {//takes in a mempass
     async updatePassage(mempass) { //add code to ensure you recieve a mempass object
         this.pass_title = mempass.pass_id;
         this.showstring = mempass.passage;
-        this.hiddenstring = mempass.passage; //implement this later
+        this.hiddenstring = mempass.passage.replace(allbutspace, "_"); //implement this later
         // if (punc) {
         //     this.goalarray = mempass.puncarray;
         // } else {
@@ -91,7 +92,7 @@ class typeGame {//takes in a mempass
         // let temp = this.passage.replace(allregexbutspace,"_");//replace all the characters with an underscore!
         // this.typearray = temp.split(" ");
         this.goalarray = mempass.puncarray;
-        this.typearray = mempass.puncarray; 
+        this.typearray = this.hiddenstring.split(" ");
         this.word_count = mempass.wc;
         
         this.beginGame();
@@ -113,14 +114,15 @@ class typeGame {//takes in a mempass
     }
 
     async beginGame() {
+        this.current_word=0;
         this.updateDisplay();
         //insert passage after clearning previous one
         // this.typearray = [];
-        this.current_word=0;
     }
 
-    async checkWord() {
+    async checkWord() {//removed async
         const wordEl = document.querySelector("#word");
+        const button = document.getElementById("submit_btn");
         localStorage.setItem("word", wordEl.value);
         let word = localStorage.getItem('word');
         wordEl.value = "";
@@ -133,22 +135,39 @@ class typeGame {//takes in a mempass
                 //update the typearray to fill in the previous word
                 // this.typearray[this.current_word-1] = this.goalarray[this.current_word-1];
                 //show the new typearray so they can see their progress!
+                // this.showCorrect(button);
+                button.style.backgroundColor='green';
+                setTimeout(this.removeButtonColor, 250);
                 this.updateDisplay();
+                
             }
         
         } else {
-            showWrong(); //give an error message, let them try again
+            // this.showWrong(button); //give an error message, let them try again
+            button.style.backgroundColor='red';
+            setTimeout(this.removeButtonColor, 250);
+            // button.removeAttribute('style');
         }
+    }
+
+    async removeButtonColor () {
+        const button = document.getElementById("submit_btn");
+        button.removeAttribute('style');
     }
 
     async noPuncTypeWord(word) {
         //copy above code but use this.nopuncarray
     }
 
-    async showWrong() {
-        //edit the input button to turn red?
-        console.log("WRONG");
-    }
+//     async showWrong(button) {
+//         const background = `hsl(${this.hue}, 100%, 25%)`;
+//         this.el.style.backgroundColor = background;
+// }
+
+//     async showWrong(button) {
+//             const background = `hsl(${this.hue}, 100%, 25%)`;
+//             this.el.style.backgroundColor = background;
+//     }
 
     async forgotWord() {
         this.typeWord(this.goalarray[this.current_word]);
