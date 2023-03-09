@@ -160,3 +160,5 @@ fxnToLiveLife();
 
 - the /g at the end of RegExp means to select every item, not just the first one that matches!
 - You can use the JS document to define needed variables and access them in the classes.
+- Use classes and initialize an object of the class to get the JS started on each page.
+- Use localStorage.setItem(item name, item value) to create local data and localStorage.getItem(item name) to access that data
