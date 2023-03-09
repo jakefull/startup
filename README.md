@@ -176,7 +176,7 @@ queryselectorall('p') - an iterator to iterate over ALL p!
 
 Use chmod +x deploy.sh in console to make a script executable
 
-##JS Arrow Functions
+## JS Arrow Functions
 - Arrow functions with no parenthasees have an automatic return statement built in
 
 
