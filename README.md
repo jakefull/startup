@@ -46,6 +46,16 @@ Use sudo vi Caddyfile -> i to edit
 Esc to stop editing -> :wq to save your edits
 sudo service caddy restart to begin https service
 
+# HTML
+
+Common Elements:
+- header
+- nav (for navigation, usually contains multiple div or divisions)
+- main (can have multiple sections, ul or unordered lists, tables, and an aside)
+- inline elements such as `<div> I said <b>NO!</b> My answer is final. </div>` can be used to bring attention to text or mark a sections as something.
+- also, img, svg, video, audio
+
+
 ## Simon HTML Assignment
 
 I learned how powerful html is albeit very basic looking. You can display all the information you need to in an organized manner, collect data from the user, and display images/shapes. I also learned that even if you set the language to english, you can still display Japanese text just fine.
@@ -53,7 +63,27 @@ I learned how powerful html is albeit very basic looking. You can display all th
 The following line of code took me a while to understand, but then I realized it was setting the icon that shows in the tab on your browser! Pretty neat stuff, aye?
     <link rel="icon" href="favicon.ico" />
 
-## CSS
+# CSS
+
+Selectors:
+Type the following under <head><style> or <head><link>link to CSS doc or inline style="color:black"
+- NOTE: any declaration at a lower level will override higher level
+```
+body {
+  font-family: sans-serif;
+}
+```
+- If it is a class, use: `.class_name` or `p.class_name` to narrow it down to only paragraphs of that class.
+- If it is an ID, use: `#ID_name`
+- There is also an attribute selector: a[href] where href can = "./pic_name.png" or href* = "https://" for websites, etc.
+- And finally, a pseudo secelctor: `section:hover {}`
+
+- colors can be keyword, RGB hex (#0FA2), RGB function (rgb(25%, 220, 128, 0.5)), or HSL (same as RGB but col, grey, light)
+
+- BOX MODEL: "caution: pals before marriage" from inside out, content, padding, border, margin
+- CSS defaults to content box for sizing (change to border-box for size to match visual size)
+
+
 
 Be sure to position things absolutely or fix them (depending on what you want them to do when the user scrolls) to posiiton things around the display. Additionally, when having animations that involve going off screen and coming on screen, don't forget to edit the width.
 
@@ -84,6 +114,8 @@ Reference this website for more ideas on what to implement: https://getbootstrap
 ## Simon CSS Implementation
 
 I learned the importance of understanding what all of the bootstrap classes do whenever you implement them... because if you don't understand, you will get stuck trying to fix one little formatting thing for a good while! The containers really clicked for me though, and I was able to visualize more easily how all of the containers work togther. I also learned that you could override some undesirable features by using your own stylesheet. I had to do that for a bootstrap login menu that I implemented, as some of the text wasn't centering on it. Once I changed the display of the text's container to flex, however, I could then center its content.
+
+# JavaScript
 
 ## JS Obj/Classes
 
@@ -162,3 +194,4 @@ fxnToLiveLife();
 - You can use the JS document to define needed variables and access them in the classes.
 - Use classes and initialize an object of the class to get the JS started on each page.
 - Use localStorage.setItem(item name, item value) to create local data and localStorage.getItem(item name) to access that data
+- PERSONAL NOTE: Check form action on collections page?
