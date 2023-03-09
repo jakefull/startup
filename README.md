@@ -41,6 +41,8 @@ Mapping of domain names:
 - Address (A) records: straight mapping, domain name to IP address
 - Canonical Name (CNAME) records: domain name alias, one domain name to another domain name
 
+NOTE: subdomains are the entire domain, not just the first part of the url
+
 
 IP Address: http://18.189.66.142/
 
@@ -164,6 +166,32 @@ I learned the importance of understanding what all of the bootstrap classes do w
 
 # JavaScript
 
+## Inserting
+- You can use `<script src="index.js"><script>` under head or insert functions in a script element on the html document
+- You can also write JS code under onClick
+- Select HTML elements using:
+queryselector('p') - the FIRST p
+queryselectorall('p') - an iterator to iterate over ALL p!
+- textContent sets child text for element
+
+Use chmod +x deploy.sh in console to make a script executable
+
+##JS Arrow Functions
+- Arrow functions with no parenthasees have an automatic return statement built in
+
+
+## JS Arrays
+- sort: runs a function and sorts an array in place
+- find: finds first value that satisfies a fxn
+- reduce: reduces an array using a function to a single item
+- map: maps an array to a new array (a.map(i=>i+i))
+- filter: removes all items that dont satisfy fxn (a.filter(i=>i%2))
+- every: runs a fxn to see if all items match (a.every(i=>i<3))
+- some: every but to see if any items match
+
+Also note that 
+
+
 ## JS Obj/Classes
 
 Remember to use the this. whenever accessing the variables/attributes of the obj/class. Also, when defining a func as an attribute of a func or class, remember that you don't need to declare function before doing so.
@@ -226,6 +254,8 @@ function liveLife () {
 
 fxnToLiveLife();
 ```
+
+When evaluating a promise using the .then .catch. finally, the computer is going to "skip past it" and keep executing the code below. When evaluating a promise using async and await (try, catch etc.), the code hits the await and stops until that await promise is resolved.
 
 ## Simon JS
 
