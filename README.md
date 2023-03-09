@@ -154,3 +154,11 @@ fxnToLiveLife();
 - NOTE: Sometimes you need to include this at the end of the body in case your code references HTML elements during initialization!
 - Also add  `onclick = "fxn()"` to buttons and forms so that your js is called.
 - Additionally, you can define multiple classes for a button element and create a class specifically for the javascript to discover the button.
+
+
+## Startup JS
+
+- the /g at the end of RegExp means to select every item, not just the first one that matches!
+- You can use the JS document to define needed variables and access them in the classes.
+- Use classes and initialize an object of the class to get the JS started on each page.
+- Use localStorage.setItem(item name, item value) to create local data and localStorage.getItem(item name) to access that data
