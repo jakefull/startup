@@ -83,14 +83,16 @@ body {
 - BOX MODEL: "caution: pals before marriage" from inside out, content, padding, border, margin
 - CSS defaults to content box for sizing (change to border-box for size to match visual size)
 Animations:
-```@keyframes demo {
+```
+ @keyframes demo {
  from {
  something: value
  }
  //optional: percentage value definitions
  to {
  something: other value
- }```
+ }
+ ```
  
 FLEX
 - `flex: 0 80px` means will not grow (0) and starting basis height of 80px
