@@ -35,7 +35,12 @@ Often times, simple but functional and straightforward is better than complicate
 
 I need to study bootstrap spacing and how that meshes with flex... look into that more.
 
-## Notes on Web Server
+## Notes on Web Server and DNS
+
+Mapping of domain names:
+- Address (A) records: straight mapping, domain name to IP address
+- Canonical Name (CNAME) records: domain name alias, one domain name to another domain name
+
 
 IP Address: http://18.189.66.142/
 
@@ -45,6 +50,12 @@ SSH login cmd: ssh -i [key pair file] ubuntu@[ip address]
 Use sudo vi Caddyfile -> i to edit
 Esc to stop editing -> :wq to save your edits
 sudo service caddy restart to begin https service
+
+
+## Other
+
+- Json formatting: Always has key in quotes {"x":3}
+- 
 
 # HTML
 
@@ -80,6 +91,26 @@ body {
 
 - colors can be keyword, RGB hex (#0FA2), RGB function (rgb(25%, 220, 128, 0.5)), or HSL (same as RGB but col, grey, light)
 
+FONTS:
+- Two ways to import:
+```
+@import url('https://fonts.googleapis.com/css2?family=Rubik Microbe&display=swap');
+
+p {
+  font-family: 'Rubik Microbe';
+}
+```
+or:
+```
+@font-face {
+  font-family: 'Something';
+  src: url('https://cs260.click/fonts/quicksand.woff2');
+}
+
+p {
+  font-family: Something;
+}
+```
 - BOX MODEL: "caution: pals before marriage" from inside out, content, padding, border, margin
 - CSS defaults to content box for sizing (change to border-box for size to match visual size)
 Animations:
