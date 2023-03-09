@@ -82,6 +82,20 @@ body {
 
 - BOX MODEL: "caution: pals before marriage" from inside out, content, padding, border, margin
 - CSS defaults to content box for sizing (change to border-box for size to match visual size)
+Animations:
+```@keyframes demo {
+ from {
+ something: value
+ }
+ //optional: percentage value definitions
+ to {
+ something: other value
+ }```
+ 
+FLEX
+- `flex: 0 80px` means will not grow (0) and starting basis height of 80px
+- `flex: 1`f gives a fractional value for growth. (if 3, gets 3 units of space)
+
 
 
 
@@ -194,4 +208,4 @@ fxnToLiveLife();
 - You can use the JS document to define needed variables and access them in the classes.
 - Use classes and initialize an object of the class to get the JS started on each page.
 - Use localStorage.setItem(item name, item value) to create local data and localStorage.getItem(item name) to access that data
-- PERSONAL NOTE: Check form action on collections page?
+- PERSONAL NOTE: Check form action on collections page? ALSO, see CSS flex grid for collections page!
