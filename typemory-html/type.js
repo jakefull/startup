@@ -16,8 +16,17 @@
 
 //DECLARE REGEXs
 
+//DEBUG: When going to this page (at least after creating a custom passage), the page 'crashes' or blips out
+//for a second when you first try to check a word in any of the passages
+
 const allbutspace = /\S/g;
 const allpunc = /[.,\/#!$%\^&\*;:{}=\-_`~()]/g;
+
+
+// function makeNewMempass (title, passage) {
+//     returnthis = new mempass (title, passage);
+//     return returnthis;
+// }
 
 class mempass {
     pass_id; //name for passage
@@ -53,7 +62,7 @@ class typeGame {//takes in a mempass
         this.goalarray = [];
         this.typearray = []; //eventually replace hidden string with this
         this.showstring = "Please select a passage using the passage screen or sidebar (if present)";
-        this.hiddenstring = "HIDDEN: Please select a passage using the passage screen or sidebar (if present)";
+//         hiddenstring is initalized in beginGame
         this.current_word = 0;
         this.show = false;
         this.pass_title = "Unselected"
@@ -119,9 +128,19 @@ class typeGame {//takes in a mempass
       }
 
     async updatePassage(mempass) { //add code to ensure you recieve a mempass object
-        this.pass_title = mempass.pass_id;
-        this.showstring = mempass.passage;
-        this.hiddenstring = mempass.passage.replace(allbutspace, "_"); //implement this later
+        if (mempass.pass_id !== undefined) {
+            this.pass_title = mempass.pass_id;
+        } else {
+            this.pass_title = "No Title"
+        }
+        if (mempass.passage !== undefined) {
+            this.showstring = mempass.passage;
+            this.hiddenstring = mempass.passage.replace(allbutspace, "_");
+        } else {
+            this.showstring = "No Passage";
+            this.hiddenstring = "No Passage";
+        }
+         //implement this later
         // if (punc) {
         //     this.goalarray = mempass.puncarray;
         // } else {
@@ -143,12 +162,15 @@ class typeGame {//takes in a mempass
         } else {
             document.getElementById("thepass").textContent=this.hiddenstring;
         }
-        document.getElementById("counter").textContent=this.current_word+1;
+        document.getElementById("counter").textContent=this.current_word;
     }
 
     async beginGame() {
         this.current_word=0;
         this.hiddenstring = this.showstring.replace(allbutspace, "_");
+        if (this.pass_title === "Unselected") {
+            this.hiddenstring = "Please select a passage using the passage screen or sidebar (if present)";
+        }
         this.typearray = this.hiddenstring.split(" ");
         this.updateDisplay();
         //insert passage after clearning previous one
@@ -220,6 +242,12 @@ mempass2 = new mempass("Standard of Truth", Passage2);
 const Passage3 = "This course is designed so that you can complete everything entirely online. However, in-person classes are provided most Monday, Wednesday, and Fridays at 3 PM in JKB 3108.  Everyone is invited, and encouraged, to come regardless if you are in the online or in-person section. Creating an internet start up is a social activity and the more energy we bring to class the more we will all gain from the course."
 mempass3 = new mempass("CS 260 Description",Passage3);
 const Passage4 = "This is the shortest passage to memorize."
-mempass4 = new mempass("Short", Passage4)
+mempass4 = new mempass("Short", Passage4);
+if (localStorage.getItem("passTitle")===null || localStorage.getItem("passBody") === null) {
+    mempass_custom = new mempass("Not Yet Defined", "Go to the 'Choose Collection' page to make your own, custom passage.")
+} else {
+    mempass_custom = new mempass(localStorage.getItem("passTitle"), localStorage.getItem("passBody"));
+}
+
 
 const game = new typeGame;
