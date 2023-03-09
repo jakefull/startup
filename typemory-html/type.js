@@ -66,43 +66,43 @@ class typeGame {//takes in a mempass
         this.beginGame();
     }
 
-    saveScore(wc) {
+    saveScore(score) {
         const userName = this.getPlayerName();
-        let memorized = [];
+        let scores = [];
         const scoresText = localStorage.getItem('scores');
         if (scoresText) {
-          memorized = JSON.parse(scoresText);
+          scores = JSON.parse(scoresText);
         }
-        memorized = this.updateScores(userName, wc, memorized);
+        scores = this.updateScores(userName, score, scores);
     
-        localStorage.setItem('scores', JSON.stringify(memorized));
+        localStorage.setItem('scores', JSON.stringify(scores));
       }
-
-    //   updateScore(wc) {
-    //     const wcEl = document.querySelector('#counter');
-    //     wcEl.textContent = wc;
-    //   }
-
-      updateScores(userName, pass_title, wc, memorized) {
+    
+      updateScores(userName, score, scores) {
         const date = new Date().toLocaleDateString();
-        const newPass = { name: userName, pass_title: pass_title, wc: wc, date: date};
+        const newScore = { name: userName, score: score, title: this.pass_title, date: date };
     
         let found = false;
-        for (const [i, prevPass] of memorized.entries()) {
-          if (wc > prevPass.wc) {
-            scores.splice(i, 0, memorized);
+        for (const [i, prevScore] of scores.entries()) {
+          if (score > prevScore.score) {
+            scores.splice(i, 0, newScore);
             found = true;
             break;
           }
         }
+    
         if (!found) {
-            scores.push(newScore);
+          scores.push(newScore);
         }
-//PICK UP HERE ______________________________________--------------_________ Maybe incorporate just as he has it and THEN change some variables, etc.
+    
         if (scores.length > 10) {
-            scores.length = 10;
+          scores.length = 10;
         }
+    
+        return scores;
       }
+    
+    
 
     switchShow() {
         if (this.show) {
@@ -166,6 +166,7 @@ class typeGame {//takes in a mempass
             this.hiddenstring = this.typearray.join(" "); //this should join all the array into a string
             this.current_word++;
             if (this.current_word >= this.word_count) {
+                this.saveScore(this.current_word); //doesnt seem to work?
                 this.beginGame();
             } else {
                 //update the typearray to fill in the previous word
@@ -175,6 +176,7 @@ class typeGame {//takes in a mempass
                 button.style.backgroundColor='green';
                 setTimeout(this.removeButtonColor, 250);
                 this.updateDisplay();
+                
                 
             }
         
