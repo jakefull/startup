@@ -272,3 +272,50 @@ When evaluating a promise using the .then .catch. finally, the computer is going
 - Use classes and initialize an object of the class to get the JS started on each page.
 - Use localStorage.setItem(item name, item value) to create local data and localStorage.getItem(item name) to access that data
 - PERSONAL NOTE: Check form action on collections page? ALSO, see CSS flex grid for collections page!
+
+# `POST MIDTERM`
+
+## URL
+Example: https://byu.edu:443/cs/260/student?filter=accepted#summary
+- shceme: https
+- domain name: byu.edu
+- port: 3000 (specifies which port is used to connect to domain server)
+- path: /school/byu/user/8014
+- parameters: filter=names&highlight=intro,summary
+- anchor: summary (sub-location)
+URN is a Uniform Resource Name that doesn't specify a specific location.
+URI is a Uniform Resource Identifier that could refer to either a URL or a URN.
+
+## Ports
+Common port numbers:
+- 20: FTP (file transfer protocol)
+- 22: SSH for remote devices
+- 25: Simple Mail Transfer Protocol (SMTP) for sending email
+- 53: DNS for looking up IP addresses
+- 80: HTTP for web requests
+- 110: Post Office Protocol (POP3) for retrieving email
+- 123: Netwrok Time Protocol (NTP) for managing time
+- 161: Simple Network Management Protocol (SNMP) for managing routers, printers, etc.
+- 194: Internet Relay Chat (IRC) for chatting
+- 443: HTTPS
+
+## HTTP
+Verbs:
+- GET
+- POST
+- PUT
+- DELETE
+- OPTIONS
+
+Status Codes:
+- 1xx: informational
+- 2xx - success
+- 3xx - redirect
+- 4xx - client errors (invalid request)
+- 5xx - server errors
+
+## SOP and CORS
+SOP is Same Origin Policy. Only allows JavaScript to make rquests to domain if it is same domain that user is viewing. Default is SOP aka to not allow other origins.
+CORS is Cross Origin Resource Sharing. Allows server to respond with what origins are allowed. If *, any origin can make the request
+
+
