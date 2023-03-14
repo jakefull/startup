@@ -318,4 +318,27 @@ Status Codes:
 SOP is Same Origin Policy. Only allows JavaScript to make rquests to domain if it is same domain that user is viewing. Default is SOP aka to not allow other origins.
 CORS is Cross Origin Resource Sharing. Allows server to respond with what origins are allowed. If *, any origin can make the request
 
+## Node.js
+
+1. Create project directory
+2. Initialize it by running `npm init -y`
+3. Add `node-modules` to `.gitignore`
+4. Install desired packages using `npm install <package name>`
+5. Add `require('<package name>')` to JS code
+6. Run your code w/ `node main.js`
+
+For a localhost server, install npm package `http` and use:
+
+```ruby
+const http = require('http');
+const server = http.createServer(function (req, res) {
+  res.writeHead(200, { 'Content-Type': 'text/html' });
+  res.write('<h1>Hello Node.js!</h1>');
+  res.end();
+});
+
+server.listen(8080, () => {
+  console.log(`Web service listening on port 8080`);
+});
+```
 
