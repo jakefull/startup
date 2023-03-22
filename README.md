@@ -342,3 +342,8 @@ server.listen(8080, () => {
 });
 ```
 
+## Simon Service
+- I learned that you can use chmod 600 file_name to change permissions of a file. I needed to do this because my key was public and the deployment script only allowed private keys.
+- I also learned that when you clone things from git, it clones them according to whatever operating system you are on (when possible). This is why when I copied over files I had cloned onto my windows over to my linux subsystem, the deployment script would not work.
+- Also! npm is installed on your server! So when you deploy, you don't need to deploy npm packages and what not... plus, if you deployed packages from windows to a linux server, that would also cause some issues...
+- Lastly, I learned that when you run the code in VS, you can access it in your own browser using localhost:specified_port_#. I was confused since the "Go live" option disappeared once I created my backend, but it makes sense now since the backend specifies which port to use.
