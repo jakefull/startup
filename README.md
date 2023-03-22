@@ -35,7 +35,14 @@ Often times, simple but functional and straightforward is better than complicate
 
 I need to study bootstrap spacing and how that meshes with flex... look into that more.
 
-## Notes on Web Server
+## Notes on Web Server and DNS
+
+Mapping of domain names:
+- Address (A) records: straight mapping, domain name to IP address
+- Canonical Name (CNAME) records: domain name alias, one domain name to another domain name
+
+NOTE: subdomains are the entire domain, not just the first part of the url
+
 
 IP Address: http://18.189.66.142/
 
@@ -46,6 +53,22 @@ Use sudo vi Caddyfile -> i to edit
 Esc to stop editing -> :wq to save your edits
 sudo service caddy restart to begin https service
 
+
+## Other
+
+- Json formatting: Always has key in quotes {"x":3}
+- 
+
+# HTML
+
+Common Elements:
+- header
+- nav (for navigation, usually contains multiple div or divisions)
+- main (can have multiple sections, ul or unordered lists, tables, and an aside)
+- inline elements such as `<div> I said <b>NO!</b> My answer is final. </div>` can be used to bring attention to text or mark a sections as something.
+- also, img, svg, video, audio
+
+
 ## Simon HTML Assignment
 
 I learned how powerful html is albeit very basic looking. You can display all the information you need to in an organized manner, collect data from the user, and display images/shapes. I also learned that even if you set the language to english, you can still display Japanese text just fine.
@@ -53,7 +76,63 @@ I learned how powerful html is albeit very basic looking. You can display all th
 The following line of code took me a while to understand, but then I realized it was setting the icon that shows in the tab on your browser! Pretty neat stuff, aye?
     <link rel="icon" href="favicon.ico" />
 
-## CSS
+# CSS
+
+Selectors:
+Type the following under <head><style> or <head><link>link to CSS doc or inline style="color:black"
+- NOTE: any declaration at a lower level will override higher level
+```
+body {
+  font-family: sans-serif;
+}
+```
+- If it is a class, use: `.class_name` or `p.class_name` to narrow it down to only paragraphs of that class.
+- If it is an ID, use: `#ID_name`
+- There is also an attribute selector: a[href] where href can = "./pic_name.png" or href* = "https://" for websites, etc.
+- And finally, a pseudo secelctor: `section:hover {}`
+
+- colors can be keyword, RGB hex (#0FA2), RGB function (rgb(25%, 220, 128, 0.5)), or HSL (same as RGB but col, grey, light)
+
+FONTS:
+- Two ways to import:
+```
+@import url('https://fonts.googleapis.com/css2?family=Rubik Microbe&display=swap');
+
+p {
+  font-family: 'Rubik Microbe';
+}
+```
+or:
+```
+@font-face {
+  font-family: 'Something';
+  src: url('https://cs260.click/fonts/quicksand.woff2');
+}
+
+p {
+  font-family: Something;
+}
+```
+- BOX MODEL: "caution: pals before marriage" from inside out, content, padding, border, margin
+- CSS defaults to content box for sizing (change to border-box for size to match visual size)
+Animations:
+```
+ @keyframes demo {
+ from {
+ something: value
+ }
+ //optional: percentage value definitions
+ to {
+ something: other value
+ }
+ ```
+ 
+FLEX
+- `flex: 0 80px` means will not grow (0) and starting basis height of 80px
+- `flex: 1`f gives a fractional value for growth. (if 3, gets 3 units of space)
+
+
+
 
 Be sure to position things absolutely or fix them (depending on what you want them to do when the user scrolls) to posiiton things around the display. Additionally, when having animations that involve going off screen and coming on screen, don't forget to edit the width.
 
@@ -84,4 +163,182 @@ Reference this website for more ideas on what to implement: https://getbootstrap
 ## Simon CSS Implementation
 
 I learned the importance of understanding what all of the bootstrap classes do whenever you implement them... because if you don't understand, you will get stuck trying to fix one little formatting thing for a good while! The containers really clicked for me though, and I was able to visualize more easily how all of the containers work togther. I also learned that you could override some undesirable features by using your own stylesheet. I had to do that for a bootstrap login menu that I implemented, as some of the text wasn't centering on it. Once I changed the display of the text's container to flex, however, I could then center its content.
+
+# JavaScript
+
+## Inserting
+- You can use `<script src="index.js"><script>` under head or insert functions in a script element on the html document
+- You can also write JS code under onClick
+- Select HTML elements using:
+queryselector('p') - the FIRST p
+queryselectorall('p') - an iterator to iterate over ALL p!
+- textContent sets child text for element
+
+Use chmod +x deploy.sh in console to make a script executable
+
+## JS Arrow Functions
+- Arrow functions with no parenthasees have an automatic return statement built in
+
+
+## JS Arrays
+- sort: runs a function and sorts an array in place
+- find: finds first value that satisfies a fxn
+- reduce: reduces an array using a function to a single item
+- map: maps an array to a new array (a.map(i=>i+i))
+- filter: removes all items that dont satisfy fxn (a.filter(i=>i%2))
+- every: runs a fxn to see if all items match (a.every(i=>i<3))
+- some: every but to see if any items match
+
+Also note that 
+
+
+## JS Obj/Classes
+
+Remember to use the this. whenever accessing the variables/attributes of the obj/class. Also, when defining a func as an attribute of a func or class, remember that you don't need to declare function before doing so.
+
+## JS Promises and Async/Await
+
+Here is some example code:
+
+```ruby
+const haveMoney = false;
+const amHungry = true;
+
+function liveLife () {
+  return new Promise((resolve,reject) => {
+    if (haveMoney && amHungry) {
+      resolve('arrrrrriba costa vida! yo quiero un taco!')
+    } else if (amHungry) {
+      resolve('knock it off Napoleon, make yoself a dang quesedilla!')
+    } else {
+      reject('just keep working on your homework')
+    }
+  })
+}
+
+liveLife().then((message) => {
+  console.log(message)
+}).catch((error) => {
+  console.log(error)
+})
+```
+
+And for the same code but async/await:
+
+```ruby 
+const haveMoney = false;
+const amHungry = false;
+
+async function fxnToLiveLife () {
+    try {
+  const yourLife = await liveLife();
+  console.log(yourLife);
+} catch (error) {
+  console.log(error);
+} finally {
+  console.log("good work")
+}
+}
+
+function liveLife () {
+  return new Promise((resolve,reject) => {
+    if (haveMoney && amHungry) {
+      resolve('arrrrrriba costa vida! yo quiero un taco!')
+    } else if (amHungry) {
+      resolve('knock it off Napoleon, make yoself a dang quesedilla!')
+    } else {
+      reject('just keep working on your homework')
+    }
+  })
+}
+
+fxnToLiveLife();
+```
+
+When evaluating a promise using the .then .catch. finally, the computer is going to "skip past it" and keep executing the code below. When evaluating a promise using async and await (try, catch etc.), the code hits the await and stops until that await promise is resolved.
+
+## Simon JS
+
+- Be sure to include `<script src="js file name.js"></script>` in your head html section.
+- NOTE: Sometimes you need to include this at the end of the body in case your code references HTML elements during initialization!
+- Also add  `onclick = "fxn()"` to buttons and forms so that your js is called.
+- Additionally, you can define multiple classes for a button element and create a class specifically for the javascript to discover the button.
+
+
+## Startup JS
+
+- the /g at the end of RegExp means to select every item, not just the first one that matches!
+- You can use the JS document to define needed variables and access them in the classes.
+- Use classes and initialize an object of the class to get the JS started on each page.
+- Use localStorage.setItem(item name, item value) to create local data and localStorage.getItem(item name) to access that data
+- PERSONAL NOTE: Check form action on collections page? ALSO, see CSS flex grid for collections page!
+
+# `POST MIDTERM`
+
+## URL
+Example: https://byu.edu:443/cs/260/student?filter=accepted#summary
+- shceme: https
+- domain name: byu.edu
+- port: 3000 (specifies which port is used to connect to domain server)
+- path: /school/byu/user/8014
+- parameters: filter=names&highlight=intro,summary
+- anchor: summary (sub-location)
+URN is a Uniform Resource Name that doesn't specify a specific location.
+URI is a Uniform Resource Identifier that could refer to either a URL or a URN.
+
+## Ports
+Common port numbers:
+- 20: FTP (file transfer protocol)
+- 22: SSH for remote devices
+- 25: Simple Mail Transfer Protocol (SMTP) for sending email
+- 53: DNS for looking up IP addresses
+- 80: HTTP for web requests
+- 110: Post Office Protocol (POP3) for retrieving email
+- 123: Netwrok Time Protocol (NTP) for managing time
+- 161: Simple Network Management Protocol (SNMP) for managing routers, printers, etc.
+- 194: Internet Relay Chat (IRC) for chatting
+- 443: HTTPS
+
+## HTTP
+Verbs:
+- GET
+- POST
+- PUT
+- DELETE
+- OPTIONS
+
+Status Codes:
+- 1xx: informational
+- 2xx - success
+- 3xx - redirect
+- 4xx - client errors (invalid request)
+- 5xx - server errors
+
+## SOP and CORS
+SOP is Same Origin Policy. Only allows JavaScript to make rquests to domain if it is same domain that user is viewing. Default is SOP aka to not allow other origins.
+CORS is Cross Origin Resource Sharing. Allows server to respond with what origins are allowed. If *, any origin can make the request
+
+## Node.js
+
+1. Create project directory
+2. Initialize it by running `npm init -y`
+3. Add `node-modules` to `.gitignore`
+4. Install desired packages using `npm install <package name>`
+5. Add `require('<package name>')` to JS code
+6. Run your code w/ `node main.js`
+
+For a localhost server, install npm package `http` and use:
+
+```ruby
+const http = require('http');
+const server = http.createServer(function (req, res) {
+  res.writeHead(200, { 'Content-Type': 'text/html' });
+  res.write('<h1>Hello Node.js!</h1>');
+  res.end();
+});
+
+server.listen(8080, () => {
+  console.log(`Web service listening on port 8080`);
+});
+```
 
