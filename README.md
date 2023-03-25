@@ -347,3 +347,8 @@ server.listen(8080, () => {
 - I also learned that when you clone things from git, it clones them according to whatever operating system you are on (when possible). This is why when I copied over files I had cloned onto my windows over to my linux subsystem, the deployment script would not work.
 - Also! npm is installed on your server! So when you deploy, you don't need to deploy npm packages and what not... plus, if you deployed packages from windows to a linux server, that would also cause some issues...
 - Lastly, I learned that when you run the code in VS, you can access it in your own browser using localhost:specified_port_#. I was confused since the "Go live" option disappeared once I created my backend, but it makes sense now since the backend specifies which port to use.
+
+## MongoDB
+- First off, use `ssh -i "$key" ubuntu@$hostname` to shell into your server (host name in my case would be typemory.link)
+- Set the environment variables in WSL by adding them to ~/.bash_profile and then calling source ~/.bash_profile
+- On the server, however, set the environment variablese by adding them to /etc/environment
