@@ -352,3 +352,8 @@ server.listen(8080, () => {
 - First off, use `ssh -i "$key" ubuntu@$hostname` to shell into your server (host name in my case would be typemory.link)
 - Set the environment variables in WSL by adding them to ~/.bash_profile and then calling source ~/.bash_profile
 - On the server, however, set the environment variablese by adding them to /etc/environment
+
+## Authentication/Login
+- httpOnly - ensures that credentials are only viewable by http, not js
+- secure - ensures credentials only sent over https
+- sameSite - only the same domain that sent the credentials can receive them back
