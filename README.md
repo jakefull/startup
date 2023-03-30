@@ -357,3 +357,11 @@ server.listen(8080, () => {
 - httpOnly - ensures that credentials are only viewable by http, not js
 - secure - ensures credentials only sent over https
 - sameSite - only the same domain that sent the credentials can receive them back
+- ALWAYS run the following command after deploying to the server!! 
+`pm2 restart all --update-env
+pm2 save`
+
+## Websocket
+- code for constructor: `const wss = new WebSocketServer({ noServer: true });` where WebSocketServer requires `ws`
+- use `ws.on(` to specify certain conditions when data is sent, such as  messsage, pong, or close.
+- remember to export the module at the end of the code: `module.exports = {class name };`
