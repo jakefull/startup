@@ -1,8 +1,18 @@
-function loadScores() {
+async function loadScores() {
     let scores = [];
-    const scoresText = localStorage.getItem('scores');
-    if (scoresText) {
-      scores = JSON.parse(scoresText);
+    try {
+      // Get the latest high scores from the service
+      const response = await fetch('/api/scores');
+      scores = await response.json();
+  
+      // Save the scores in case we go offline in the future
+      localStorage.setItem('scores', JSON.stringify(scores));
+    } catch {
+      // If there was an error then just use the last saved scores
+      const scoresText = localStorage.getItem('scores');
+      if (scoresText) {
+        scores = JSON.parse(scoresText);
+      }
     }
   
     const tableBodyEl = document.querySelector('#scores');
