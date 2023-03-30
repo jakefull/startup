@@ -9,9 +9,10 @@ if (!userName) {
 }
 
 const url = `mongodb+srv://${userName}:${password}@${hostname}`;
+console.log(url);
 
 const client = new MongoClient(url);
-const scoreCollection = client.db('simon').collection('score');
+const scoreCollection = client.db('typemory').collection('score');
 
 function addScore(score) {
   scoreCollection.insertOne(score);
