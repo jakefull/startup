@@ -369,3 +369,7 @@ pm2 save`
 ## Startup service notes
 - make sure you always define variables that require certain installed npm packages in each js file
 - make sure your node is up to date!
+ 
+ ## React DOM
+ - whenever you have a function that is returning an html element, pass the attributes of that element in as parameters
+ - see sandbox tutorial! That explains a lot of things and is very helpful. Good example
