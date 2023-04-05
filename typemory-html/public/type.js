@@ -100,7 +100,7 @@ class typeGame {//takes in a mempass
 
 
             // Let other players know the game has concluded
-            this.broadcastEvent(userName, GameEndEvent, newScore);
+            this.broadcastEvent(userName, GameEndEvent, this.pass_title);
 
             // Store what the service gave us as the high scores
             const scores = await response.json();
@@ -209,6 +209,8 @@ class typeGame {//takes in a mempass
         }
         this.typearray = this.hiddenstring.split(" ");
         this.updateDisplay();
+
+        this.broadcastEvent(this.getPlayerName(), GameStartEvent, {});
         //insert passage after clearning previous one
         // this.typearray = [];
     }
@@ -267,9 +269,9 @@ class typeGame {//takes in a mempass
         this.socket.onmessage = async (event) => {
           const msg = JSON.parse(await event.data.text());
           if (msg.type === GameEndEvent) {
-            this.displayMsg('player', msg.from, `scored ${msg.value.score}`);
+            this.displayMsg('user', msg.from, `memorized ${msg.value.score}`);
           } else if (msg.type === GameStartEvent) {
-            this.displayMsg('player', msg.from, `started a new game`);
+            this.displayMsg('user', msg.from, `began memorizing a passage.`);
           }
         };
       }
