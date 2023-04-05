@@ -42,8 +42,7 @@ async function loginOrCreate(endpoint) {
     },
   });
   const body = await response.json();
-  //delete this
-  console.log(response);
+
 
   if (response?.status === 200) {
     localStorage.setItem('userName', userName);

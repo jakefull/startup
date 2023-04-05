@@ -27,6 +27,8 @@ const allpunc = /[.,\/#!$%\^&\*;:{}=\-_`~()]/g;
 //     returnthis = new mempass (title, passage);
 //     return returnthis;
 // }
+const submit_button = document.getElementById("submit_btn");
+submit_button.addEventListener("click", (e) => {game.checkWord(e)});
 
 class mempass {
     pass_id; //name for passage
@@ -83,7 +85,7 @@ class typeGame {//takes in a mempass
 
         const playerNameEl = document.querySelector('.player-name');
         playerNameEl.textContent = this.getPlayerName();
-
+        this.configureWebSocket();
         this.beginGame();
     }
 
@@ -210,12 +212,13 @@ class typeGame {//takes in a mempass
         this.typearray = this.hiddenstring.split(" ");
         this.updateDisplay();
 
-        this.broadcastEvent(this.getPlayerName(), GameStartEvent, {});
-        //insert passage after clearning previous one
+        //this.broadcastEvent(this.getPlayerName(), GameStartEvent, {});
+        //insert passage after clearing previous one
         // this.typearray = [];
     }
 
-    async checkWord() {//removed async
+    async checkWord(e) {//removed async
+        e.preventDefault();
         const wordEl = document.querySelector("#word");
         const button = document.getElementById("submit_btn");
         localStorage.setItem("word", wordEl.value);
@@ -261,10 +264,10 @@ class typeGame {//takes in a mempass
         const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
         this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
         this.socket.onopen = (event) => {
-          this.displayMsg('system', 'game', 'connected');
+          this.displayMsg('system', '', 'Online');
         };
         this.socket.onclose = (event) => {
-          this.displayMsg('system', 'game', 'disconnected');
+          this.displayMsg('system', '', 'Not online');
         };
         this.socket.onmessage = async (event) => {
           const msg = JSON.parse(await event.data.text());

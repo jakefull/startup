@@ -124,7 +124,8 @@
                         <label for="word">Fill in the Blank</label>
                         <input type="text" id="word">
                         <!-- NOTE: I deleted type=submit in the button below... should fix refresh problem! -->
-                        <button id ="submit_btn" class="btn btn-primary" onclick="game.checkWord()">Check</button>
+                        <!-- onclick="game.checkWord()" -->
+                        <button id ="submit_btn" type ="submit" class="btn btn-primary" >Check</button>
                     </form>
                     <p id="counter"></p>
                   </div>
