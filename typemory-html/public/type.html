@@ -65,6 +65,11 @@
                         Your Passage
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a id="custom-link" class="nav-link" href="#" onclick="game.updatePassage(randQuotePass)">
+                        Random Quote
+                    </a>
+                  </li>
                 </ul>
                 <!-- <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
                   <span>Recent Collections</span>
@@ -99,9 +104,11 @@
                 <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                   <div class="players">
-                    Player:
+                    User:
                     <span class="player-name"></span>
+                    <div id="player-messages"></div>
                   </div>
+                  
                     <div class="btn-toolbar mb-2 mb-md-0">
                       <div class="btn-group me-2">
                         <!-- <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="button">toggle no punctuation</button> -->
@@ -116,7 +123,8 @@
                     <form method="get" class="answer">
                         <label for="word">Fill in the Blank</label>
                         <input type="text" id="word">
-                        <button id ="submit_btn" type="submit" class="btn btn-primary" onclick="game.checkWord()">Check</button>
+                        <!-- NOTE: I deleted type=submit in the button below... should fix refresh problem! -->
+                        <button id ="submit_btn" class="btn btn-primary" onclick="game.checkWord()">Check</button>
                     </form>
                     <p id="counter"></p>
                   </div>

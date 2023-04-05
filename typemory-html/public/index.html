@@ -38,7 +38,8 @@
             </div>
             <div class="col-md-10 mx-auto col-lg-5">
               <!-- removed action="type.html" from below form -->
-              <form method="get" class="p-4 p-md-5 border rounded-3 bg-light">
+              <!-- WHY WAS THE LINE BELOW PREVENTING LOGIN FROM WORKING CORRECTLY? -->
+              <!-- <form method="get" class="p-4 p-md-5 border rounded-3 bg-light">-->
                 <div class="form-floating mb-3">
                   <input type="text" class="form-control" id="userName" placeholder="Your email here">
                   <label for="text">Your Email</label>
@@ -51,19 +52,26 @@
                 <button class="w-30 btn btn-lg btn-secondary" onclick="createUser()">Create</button>
                 <hr class="my-4">
                 <small class="text-muted">Let's typemorize!</small>
-              </form>
+              <!-- </form> -->
             </div>
           </div>
         </div>
             <!-- displayed after login (if successful) -->
             <div id="playControls" style="display: none">
-              <div id="playerName"></div>
-              <button type="button" class="btn btn-primary" onclick="play()">
+              <!-- <div id="playerName"></div> -->
+              <div class="row align-items-center g-lg-5 py-5">
+              <div class="col-lg-7 text-center text-lg-start">
+                <h2 id="playerName" class="col-lg-10 fs-4" style="margin-left: 30px;"></h2>
+              </div>
+              <div class="col-md-10 mx-auto col-lg-5">
+              <button type="button" class="w-30 btn btn-lg btn-primary" onclick="play()">
                 Play
               </button>
-              <button type="button" class="btn btn-secondary" onclick="logout()">
+              <button type="button" class="w-30 btn btn-lg btn-secondary" onclick="logout()">
                 Logout
               </button>
+              </div>
+            </div>
             </div>
 <!-- This here is for error messages -->
           <div class="modal fade" id="errorBox" tabindex="-1">

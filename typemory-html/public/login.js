@@ -47,7 +47,7 @@ async function loginOrCreate(endpoint) {
 
   if (response?.status === 200) {
     localStorage.setItem('userName', userName);
-    window.location.href = 'scores.html'; //THIS ISN'T BEING CALLED!
+    window.location.href = 'type.html'; //THIS ISN'T BEING CALLED!
   } else {
     const modalEl = document.querySelector('#errorBox');
     modalEl.querySelector('.modal-body').textContent = `⚠ Error: ${body.msg}`;

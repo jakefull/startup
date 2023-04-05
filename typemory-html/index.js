@@ -3,6 +3,8 @@ const app = express();
 const DB = require('./database.js');
 const bcrypt = require('bcrypt');
 const cookieParser = require('cookie-parser');
+const { PeerProxy } = require('./peerProxy.js');
+
 const authCookieName = 'token';
 
 // The service port. In production the application is statically hosted by the service on the same port.
@@ -29,7 +31,7 @@ apiRouter.post('/auth/create', async (req, res) => {
     res.status(409).send({ msg: 'Existing user' });
   } else {
     const user = await DB.createUser(req.body.email, req.body.password);
-
+    console.log(user._id);
     // Set the cookie
     setAuthCookie(res, user.token);
 
@@ -119,9 +121,11 @@ function setAuthCookie(res, authToken) {
   });
 }
 
-app.listen(port, () => {
+const httpService = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
+
+new PeerProxy(httpService);
 
 // updateScores considers a new score for inclusion in the high scores.
 // The high scores are saved in memory and disappear whenever the service is restarted.

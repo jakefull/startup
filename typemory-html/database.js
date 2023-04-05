@@ -13,7 +13,7 @@ if (!userName) {
 const url = `mongodb+srv://${userName}:${password}@${hostname}`;
 
 const client = new MongoClient(url);
-const scoreCollection = client.db('typemory').collection('score');
+const scoreCollection = client.db('typemory').collection('score'); //score going to simon??
 const userCollection = client.db('typemory').collection('user');
 
 function addScore(score) {
@@ -38,7 +38,7 @@ function getUserByToken(token) {
   return userCollection.findOne({ token: token });
 }
 
-async function createUser(email, password) {
+async function createUser(email, password) {// I know this works!
   // Hash the password before we insert it into the database
   const passwordHash = await bcrypt.hash(password, 10);
 

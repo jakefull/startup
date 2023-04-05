@@ -36,6 +36,7 @@ class mempass {
     nopuncarray; //for reference
     wc; //word count
 
+
     constructor (pass_id, input) {
         this.pass_id = pass_id;
         this.passage = input;
@@ -48,6 +49,16 @@ class mempass {
 
 }
 
+async function fetchRandomQuoteData() {
+    const response = await fetch("https://api.quotable.io/random");
+    const json = response.json;
+    return json;
+}
+
+// Event messages
+const GameEndEvent = 'gameEnd';
+const GameStartEvent = 'gameStart';
+
 class typeGame {//takes in a mempass
     goalarray; //given by the selected mempass
     typearray; //array that is used while player is typing
@@ -57,6 +68,7 @@ class typeGame {//takes in a mempass
     pass_title;
     show;
     word_count;
+
 
     constructor () {
         this.goalarray = [];
@@ -85,7 +97,11 @@ class typeGame {//takes in a mempass
               headers: { 'content-type': 'application/json' },
               body: JSON.stringify(newScore),
             });
-      
+
+
+            // Let other players know the game has concluded
+            this.broadcastEvent(userName, GameEndEvent, newScore);
+
             // Store what the service gave us as the high scores
             const scores = await response.json();
             localStorage.setItem('scores', JSON.stringify(scores));
@@ -239,6 +255,41 @@ class typeGame {//takes in a mempass
         //copy above code but use this.nopuncarray
     }
 
+    configureWebSocket() {
+        const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+        this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+        this.socket.onopen = (event) => {
+          this.displayMsg('system', 'game', 'connected');
+        };
+        this.socket.onclose = (event) => {
+          this.displayMsg('system', 'game', 'disconnected');
+        };
+        this.socket.onmessage = async (event) => {
+          const msg = JSON.parse(await event.data.text());
+          if (msg.type === GameEndEvent) {
+            this.displayMsg('player', msg.from, `scored ${msg.value.score}`);
+          } else if (msg.type === GameStartEvent) {
+            this.displayMsg('player', msg.from, `started a new game`);
+          }
+        };
+      }
+    
+    displayMsg(cls, from, msg) {
+        const chatText = document.querySelector('#player-messages');
+        chatText.innerHTML =
+          `<div class="event"><span class="${cls}-event">${from}</span> ${msg}</div>` + chatText.innerHTML;
+      }
+    
+    broadcastEvent(from, type, value) {
+        const event = {
+          from: from,
+          type: type,
+          value: value,
+        };
+        this.socket.send(JSON.stringify(event));
+      }
+}
+
 //     async showWrong(button) {
 //         const background = `hsl(${this.hue}, 100%, 25%)`;
 //         this.el.style.backgroundColor = background;
@@ -253,7 +304,17 @@ class typeGame {//takes in a mempass
     //     this.typeWord(this.goalarray[this.current_word]);
     // }
 
+function assignQuote(data) {
+    randQuotePass = new mempass(data.author,data.content);
 }
+function getQuote() {
+    fetch("https://api.quotable.io/random")
+      .then((response) => response.json())
+      .then((data) => {
+        assignQuote(data);
+      });
+  }
+  
 
 const Passage1 = "Two roads diverged in a yellow wood, And sorry I could not travel both And be one traveler, long I stood And looked down one as far as I could To where it bent in the undergrowth";
 mempass1 = new mempass("Yellow Roads",Passage1);
@@ -263,11 +324,18 @@ const Passage3 = "This course is designed so that you can complete everything en
 mempass3 = new mempass("CS 260 Description",Passage3);
 const Passage4 = "This is the shortest passage to memorize."
 mempass4 = new mempass("Short", Passage4);
+var randQuotePass;
+// async function fetchRandomQuoteData() {
+//     let response = await fetch("https://api.quotable.io/random");
+//     response = response.json;
+//     console.log(response);
+    
+// }
+
 if (localStorage.getItem("passTitle")===null || localStorage.getItem("passBody") === null) {
     mempass_custom = new mempass("Not Yet Defined", "Go to the 'Choose Collection' page to make your own, custom passage.")
 } else {
     mempass_custom = new mempass(localStorage.getItem("passTitle"), localStorage.getItem("passBody"));
 }
-
-
+getQuote(); //YAY! It worked!!!
 const game = new typeGame;
