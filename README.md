@@ -365,3 +365,11 @@ pm2 save`
 - code for constructor: `const wss = new WebSocketServer({ noServer: true });` where WebSocketServer requires `ws`
 - use `ws.on(` to specify certain conditions when data is sent, such as  messsage, pong, or close.
 - remember to export the module at the end of the code: `module.exports = {class name };`
+
+## Startup service notes
+- make sure you always define variables that require certain installed npm packages in each js file
+- make sure your node is up to date!
+ 
+ ## React DOM
+ - whenever you have a function that is returning an html element, pass the attributes of that element in as parameters
+ - see sandbox tutorial! That explains a lot of things and is very helpful. Good example
