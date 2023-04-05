@@ -369,7 +369,9 @@ pm2 save`
 ## Startup service notes
 - make sure you always define variables that require certain installed npm packages in each js file
 - make sure your node is up to date!
+- If you are trying to set a global variable equal to the return value of some promise but aren't able to return it asynchrously, you can declare a global variable and then redefine that variable within a function the promise calls after it resolves!
  
  ## React DOM
  - whenever you have a function that is returning an html element, pass the attributes of that element in as parameters
  - see sandbox tutorial! That explains a lot of things and is very helpful. Good example
+
