@@ -376,3 +376,22 @@ pm2 save`
  - whenever you have a function that is returning an html element, pass the attributes of that element in as parameters
  - see sandbox tutorial! That explains a lot of things and is very helpful. Good example
 
+
+## React Router
+
+Here is an example snippet of code showing the router structure:
+```ruby
+      <nav>
+        <NavLink to='/'>Home</Link>
+        <NavLink to='/about'>About</Link>
+        <NavLink to='/users'>Users</Link>
+      </nav>
+
+      <main>
+        <Routes>
+          <Route path='/' element={<Home />} exact />
+          <Route path='/about' element={<About />} />
+          <Route path='/users' element={<Users />} />
+          <Route path='*' element={<Navigate to='/' replace />} />
+        </Routes>
+        ```
