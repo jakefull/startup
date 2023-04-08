@@ -8,7 +8,7 @@ const { PeerProxy } = require('./peerProxy.js');
 const authCookieName = 'token';
 
 // The service port. In production the application is statically hosted by the service on the same port.
-const port = process.argv.length > 2 ? process.argv[2] : 4000;
+const port = process.argv.length > 2 ? process.argv[2] : 6000;
 
 // JSON body parsing using built-in middleware
 app.use(express.json());

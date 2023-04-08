@@ -13,8 +13,8 @@ if (!userName) {
 const url = `mongodb+srv://${userName}:${password}@${hostname}`;
 
 const client = new MongoClient(url);
-const scoreCollection = client.db('typemory').collection('score'); //score going to simon??
-const userCollection = client.db('typemory').collection('user');
+const scoreCollection = client.db('restoration').collection('score'); //score going to simon??
+const userCollection = client.db('restoration').collection('user');
 
 function addScore(score) {
   scoreCollection.insertOne(score);

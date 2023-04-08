@@ -321,14 +321,36 @@ function getQuote() {
   }
   
 
-const Passage1 = "Two roads diverged in a yellow wood, And sorry I could not travel both And be one traveler, long I stood And looked down one as far as I could To where it bent in the undergrowth";
-mempass1 = new mempass("Yellow Roads",Passage1);
-const Passage2 = "The standard of truth has been erected. No unhallowed hand can stop the work from progressing; persecutions may rage, mobs may combine, armies may assemble, calumny may defame, but the truth of God will go forth boldly, nobly, and independent till it has penetrated every continent, visited every clime, swept every country, and sounded in every ear, till the purposes of God shall be accomplished and the great Jehovah shall say the work is done."
-mempass2 = new mempass("Standard of Truth", Passage2);
-const Passage3 = "This course is designed so that you can complete everything entirely online. However, in-person classes are provided most Monday, Wednesday, and Fridays at 3 PM in JKB 3108.  Everyone is invited, and encouraged, to come regardless if you are in the online or in-person section. Creating an internet start up is a social activity and the more energy we bring to class the more we will all gain from the course."
-mempass3 = new mempass("CS 260 Description",Passage3);
-const Passage4 = "This is the shortest passage to memorize."
-mempass4 = new mempass("Short", Passage4);
+const Passage1 = "Jesus saith unto him, I am the way, the truth, and the life: no man cometh unto the Father, but by me.";
+const Passage2 = "So it was with me. I had actually seen a light, and in the midst of that light I saw two Personages, and they did in reality speak to me; and though I was hated and persecuted for saying that I had seen a vision, yet it was true; and while they were persecuting me, reviling me, and speaking all manner of evil against me falsely for so saying, I was led to say in my heart: Why persecute me for telling the truth? I have actually seen a vision; and who am I that I can withstand God, or why does the world think to make me deny what I have actually seen? For I had seen a vision; I knew it, and I knew that God knew it, and I could not deny it, neither dared I do it; at least I knew that by so doing I would offend God, and come under condemnation.";
+const Passage3 = "When I think of the Book of Mormon, I think of the word power. The truths of the Book of Mormon have the power to heal, comfort, restore, succor, strengthen, console, and cheer our souls.";
+const Passage4 = "We believe in the same organization that existed in the Primitive Church, namely, apostles, prophets, pastors, teachers, evangelists, and so forth.";
+const Passage5 = "Search these commandments, for they are true and faithful, and the prophecies and promises which are in them shall all be fulfilled. What I the Lord have spoken, I have spoken, and I excuse not myself; and though the heavens and the earth pass away, my word shall not pass away, but shall all be fulfilled, whether by mine own voice or by the voice of my servants, it is the same.";
+const Passage6 = "We believe the Bible to be the word of God as far as it is translated correctly; we also believe the Book of Mormon to be the word of God.";
+const Passage7 = "It grieves me that there is no fuller fellowship - if one member suffer all feel it - by union of feeling we obtain power with God.";
+const Passage8 = "And he received not of the fulness at first, but continued from grace to grace, until he received a fulness; And thus he was called the Son of God, because he received not of the fulness at the first.";
+const Passage9 = "The Son of Man hath descended below them all. Art thou greater than he? Therefore, hold on thy way, and the priesthood shall remain with thee; for their bounds are set, they cannot pass. Thy days are known, and thy years shall not be numbered less; therefore, fear not what man can do, for God shall be with you forever and ever.";
+const Passage10 = "When we understand the character of God, and know how to come to Him, he begins to unfold the heavens to us, and to tell us all about it. When we are ready to come to him, he is ready to come to us.";
+const Passage11 = "The doctrine or sealing power of Elijah is as follows: If you have power to seal on earth and in heaven, then we should be wise. The first thing you do, go and seal on earth your sons and daughters unto yourself, and yourself unto your fathers in eternal glory.";
+const Passage12 = "The standard of truth has been erected. No unhallowed hand can stop the work from progressing; persecutions may rage, mobs may combine, armies may assemble, calumny may defame, but the truth of God will go forth boldly, nobly, and independent till it has penetrated every continent, visited every clime, swept every country, and sounded in every ear, till the purposes of God shall be accomplished and the great Jehovah shall say the work is done.";
+const Passage14 = "Sometimes we think of the Restoration of the gospel as something that is complete, already behind us - Joseph Smith translated the Book of Mormon, he received priesthood keys, the Church was organized. In reality, the Restoration is an ongoing process; we are living in it right now. It includes 'all that God has revealed, all that He does now reveal,' and the 'many great and important things that 'He will yet reveal.'";
+const Passage13 = "Astonishingly, to those who have eyes to see and ears to hear, it is clear that the Father and the Son are giving away the secrets of the universe! If only you and I can avoid being offended by their generosity.";
+mempass1 = new mempass("John 14:6",Passage1);
+mempass2 = new mempass("Joseph Smith History 1:25", Passage2);
+mempass3 = new mempass("President Nelson on the Book of Mormon",Passage3);
+mempass4 = new mempass("Article of Faith 6", Passage4);
+mempass5 = new mempass("Doctrine and Covenants 1:36-37", Passage5);
+mempass6 = new mempass("Article of Faith 8", Passage6);
+mempass7 = new mempass("Joseph Smith's Quote on Unity", Passage7);
+mempass8 = new mempass("Doctrine and Covenants 93:13-14", Passage8);
+mempass9 = new mempass("Doctrine and Covenants 122:8-9", Passage9);
+mempass10 = new mempass("From Joseph Smith's King Fallot Discourse", Passage10);
+mempass11 = new mempass("Joseph Smith on The Sealing Power",Passage11);
+mempass12 = new mempass("The Standard of Truth - Joseph Smith", Passage12);
+mempass13 = new mempass("Elder Maxwell on Revelation",Passage13); //notice passages switched above
+mempass14 = new mempass("Elder Uchtdorf on the Restoration", Passage14);
+
+
 var randQuotePass;
 // async function fetchRandomQuoteData() {
 //     let response = await fetch("https://api.quotable.io/random");
@@ -338,7 +360,7 @@ var randQuotePass;
 // }
 
 if (localStorage.getItem("passTitle")===null || localStorage.getItem("passBody") === null) {
-    mempass_custom = new mempass("Not Yet Defined", "Go to the 'Choose Collection' page to make your own, custom passage.")
+    mempass_custom = new mempass("Not Yet Defined", "Go to the 'Passage Details' page to make your own, custom passage.")
 } else {
     mempass_custom = new mempass(localStorage.getItem("passTitle"), localStorage.getItem("passBody"));
 }
