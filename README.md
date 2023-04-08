@@ -403,5 +403,6 @@ Here is an example snippet of code showing the router structure:
  - Use the following commands to use bootstrap with react:
  `npm install bootstrap react-bootstrap`
  `import 'bootstrap/dist/css/bootstrap.min.css';` in app.jsx
-       
-       
+ ## PM2 Troubleshooting
+ - PM2 basically runs the programs on your server
+ - Whenever you add a service under a new subdomain, you have to edit the caddy file and specify a new port, deploy your subdomain files, AND you have to do `pm2 start index.js` in the directory containing the files. Then finish by doing `pm2 save` and you should be g2g.
