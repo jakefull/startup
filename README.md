@@ -381,17 +381,27 @@ pm2 save`
 
 Here is an example snippet of code showing the router structure:
 ```ruby
-      <nav>
-        <NavLink to='/'>Home</Link>
-        <NavLink to='/about'>About</Link>
-        <NavLink to='/users'>Users</Link>
-      </nav>
+<nav>
+  <NavLink to='/'>Home</Link>
+  <NavLink to='/about'>About</Link>
+  <NavLink to='/users'>Users</Link>
+</nav>
 
-      <main>
-        <Routes>
-          <Route path='/' element={<Home />} exact />
-          <Route path='/about' element={<About />} />
-          <Route path='/users' element={<Users />} />
-          <Route path='*' element={<Navigate to='/' replace />} />
-        </Routes>
-        ```
+<main>
+  <Routes>
+    <Route path='/' element={<Home />} exact />
+    <Route path='/about' element={<About />} />
+    <Route path='/users' element={<Users />} />
+    <Route path='*' element={<Navigate to='/' replace />} />
+</Routes>
+       
+```
+
+## Simon React
+ - You have to npm install in the source folder AND in the service directory
+ - In order to debug frontend/backend simultaneously, you can host a react debug service on port 3001 and then route all requests to port 3000 (create a folder called .env.local and in it write `PORT=3001`
+ - Use the following commands to use bootstrap with react:
+ `npm install bootstrap react-bootstrap`
+ `import 'bootstrap/dist/css/bootstrap.min.css';` in app.jsx
+       
+       
