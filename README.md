@@ -307,16 +307,23 @@ Verbs:
 - DELETE
 - OPTIONS
 
-Status Codes:
+ HTTP Status Codes:
 - 1xx: informational
 - 2xx - success
-- 3xx - redirect
+- 3xx - redirect (or caching)
 - 4xx - client errors (invalid request)
 - 5xx - server errors
 
 ## SOP and CORS
 SOP is Same Origin Policy. Only allows JavaScript to make rquests to domain if it is same domain that user is viewing. Default is SOP aka to not allow other origins.
 CORS is Cross Origin Resource Sharing. Allows server to respond with what origins are allowed. If *, any origin can make the request
+
+## Fetch
+- can be used in front end and back end so you can talk to each other
+- provides ability to make HTTP requests from JS
+- takes in a URL and returns a promise
+- if content type is `application/json`, then you can use the `.then((response => response.json())` to convert it to a JS object
+- you can aslo `POST` with fetch, after the link just include a dictionary with `method: 'POST'` and a `body:` and `headers:` sections
 
 ## Node.js
 
@@ -342,6 +349,17 @@ server.listen(8080, () => {
 });
 ```
 
+## Express
+- express middleware allows you to receive fetch requests (for one)
+example:
+In order to match this request:
+```const r = await fetch('fav/ringo',{
+ method: 'DELETE'
+ });```
+ We need to have something like this as our middleware:
+ `app.delete(/fav\/(.*)/, () => {})` (don't mind the regex/escaping some of the characters)
+ 
+
 ## Simon Service
 - I learned that you can use chmod 600 file_name to change permissions of a file. I needed to do this because my key was public and the deployment script only allowed private keys.
 - I also learned that when you clone things from git, it clones them according to whatever operating system you are on (when possible). This is why when I copied over files I had cloned onto my windows over to my linux subsystem, the deployment script would not work.
@@ -352,8 +370,11 @@ server.listen(8080, () => {
 - First off, use `ssh -i "$key" ubuntu@$hostname` to shell into your server (host name in my case would be typemory.link)
 - Set the environment variables in WSL by adding them to ~/.bash_profile and then calling source ~/.bash_profile
 - On the server, however, set the environment variablese by adding them to /etc/environment
+- Example Query: `{ $or: [{name:/J.*/}, {score: {$lt:3}}]}`
+- Example Match: `{name:"Walke", score:-55}` b/c score is less than 3 and it is an or conditional, not and (note: J is case sensitive here, also less than or equal is lte)
 
 ## Authentication/Login
+- cookies allow a server to store data on the client
 - httpOnly - ensures that credentials are only viewable by http, not js
 - secure - ensures credentials only sent over https
 - sameSite - only the same domain that sent the credentials can receive them back
@@ -365,6 +386,7 @@ pm2 save`
 - code for constructor: `const wss = new WebSocketServer({ noServer: true });` where WebSocketServer requires `ws`
 - use `ws.on(` to specify certain conditions when data is sent, such as  messsage, pong, or close.
 - remember to export the module at the end of the code: `module.exports = {class name };`
+- websocket is peer t peer instead of client to server
 
 ## Startup service notes
 - make sure you always define variables that require certain installed npm packages in each js file
@@ -375,10 +397,10 @@ pm2 save`
  ## React DOM
  - whenever you have a function that is returning an html element, pass the attributes of that element in as parameters
  - see sandbox tutorial! That explains a lot of things and is very helpful. Good example
+ - JSX is used to inject HTML and JS, to componetize HTML, and to allow for composabiltiy of HTML
 
 
 ## React Router
-
 Here is an example snippet of code showing the router structure:
 ```ruby
 <nav>
@@ -403,6 +425,31 @@ Here is an example snippet of code showing the router structure:
  - Use the following commands to use bootstrap with react:
  `npm install bootstrap react-bootstrap`
  `import 'bootstrap/dist/css/bootstrap.min.css';` in app.jsx
+ 
  ## PM2 Troubleshooting
  - PM2 basically runs the programs on your server
  - Whenever you add a service under a new subdomain, you have to edit the caddy file and specify a new port, deploy your subdomain files, AND you have to do `pm2 start index.js` in the directory containing the files. Then finish by doing `pm2 save` and you should be g2g.
+ 
+ ## Notes for final
+ - Host, Content-Type, Cookie - all examples of HTTP headers
+ Linux daemon
+ - starts when computer is rebooted
+ - can fork other processes
+ - executes indepentent of a user
+ - PM2 is an example of a daemon
+ React
+ `React.useEffect(() => updateX(D), [v]);`
+ - this will be called the first time it is rendered and whenever v changes (it has a dependency on v). If you don't include an array, it will render whenever it needs to, or if you include an empty array, it will only render the first time
+ - It updates x to the value D
+ 
+ If you are calling [get] /something/parameter, then the app.use middleware will still be called. and if there are mutliple app.get middlewareds, they will also be called!
+ `const [v, updateV] = React.useState(false)` sets v to false
+ 
+ `npm install ws`
+ - adds a dependency to your package.json file
+ - adds websocket source code to node_modules directory
+ - locks the version of the websocket package for your application
+ If you don't specify a package, it will look at your package.json file and download whatever you previously had specified in there
+ 
+ 
+ 
