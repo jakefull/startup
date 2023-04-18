@@ -353,9 +353,11 @@ server.listen(8080, () => {
 - express middleware allows you to receive fetch requests (for one)
 example:
 In order to match this request:
-```const r = await fetch('fav/ringo',{
+```ruby
+const r = await fetch('fav/ringo',{
  method: 'DELETE'
- });```
+ });
+ ```
  We need to have something like this as our middleware:
  `app.delete(/fav\/(.*)/, () => {})` (don't mind the regex/escaping some of the characters)
  
